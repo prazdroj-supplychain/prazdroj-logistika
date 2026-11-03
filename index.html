@@ -1668,9 +1668,9 @@ function buildTap(m) {
     const handle = lathe([[0, 0], [0.9, 0], [1.25, 1.2], [1.45, 4], [1.5, 6.4], [1.25, 7.6], [0.6, 8.2], [0, 8.3]].map(([r, y]) => [r, y + 51.1]), black, 40);
     handle.position.set(x, 0, 14.6); m.add(handle);
   });
-  /* medailony Pilsner Urquell na zahnutých stopkách za kohouty */
-  const badgeMat = std(0xffffff, 0.15, 0.35, { map: brandBadgeTex("pu") });
-  [[-6.5, 58.5, 7.4], [6.5, 58.5, 7.4]].forEach(([x, y, z]) => {
+  /* medailony na zahnutých stopkách za kohouty: vlevo Pilsner Urquell, vpravo Birell */
+  [[-6.5, 58.5, 7.4, "pu"], [6.5, 58.5, 7.4, "birell"]].forEach(([x, y, z, brand]) => {
+    const badgeMat = std(0xffffff, 0.15, 0.35, { map: brandBadgeTex(brand) });
     const stem = new THREE.CatmullRomCurve3([[x * 0.4, 46.5, 9.5], [x * 0.6, 49.5, 8.6], [x, 51.5, 7.6], [x, y - 6.2, z]].map(v => new THREE.Vector3(...v)));
     m.add(new THREE.Mesh(new THREE.TubeGeometry(stem, 30, 0.45, 12, false), chrome));
     add(new THREE.CylinderGeometry(6.4, 6.4, 1.2, 56), chrome, x, y, z).rotation.x = Math.PI / 2;
